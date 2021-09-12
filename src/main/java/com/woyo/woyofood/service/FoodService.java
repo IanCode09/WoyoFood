@@ -29,7 +29,7 @@ public class FoodService {
     public FoodDto getDetailFood(int id) {
         Optional<FoodModel> foodExists = foodRepository.findById(id);
 
-        if(foodExists.isPresent()) {
+        if (foodExists.isPresent()) {
             FoodDto foodDto = new FoodDto();
             foodDto.setFoodId(foodExists.get().getFoodId());
             foodDto.setRestoId(foodExists.get().getRestoId());
@@ -54,4 +54,47 @@ public class FoodService {
         }
     }
 
+    public FoodModel createFood(FoodModel foodModel) {
+        return foodRepository.save(foodModel);
+    }
+
+    public Optional<FoodModel> getFoodById(int id) {
+        Optional<FoodModel> foodExists = foodRepository.findById(id);
+        return foodExists;
+    }
+
+    public FoodDto updateFood(int foodId, String foodName, int price, String details) {
+        Optional<FoodModel> food = foodRepository.findById(foodId);
+
+        FoodModel foodModel = food.get();
+
+        if (foodName != null && !foodName.isEmpty()) {
+            foodModel.setFoodName(foodName);
+        }
+
+        if (price > 0) {
+            foodModel.setPrice(price);
+        }
+
+        if (details != null && !details.isEmpty()) {
+            foodModel.setDetails(details);
+        }
+
+        foodRepository.save(foodModel);
+
+        FoodDto foodDto = new FoodDto();
+        foodDto.setFoodId(foodModel.getFoodId());
+        foodDto.setRestoId(foodModel.getRestoId());
+        foodDto.setFoodName(foodModel.getFoodName());
+        foodDto.setPrice(foodModel.getPrice());
+        foodDto.setRate(foodModel.getRate());
+        foodDto.setDetails(foodModel.getDetails());
+
+        return foodDto;
+    }
+
+    public boolean deleteFood(int id) {
+        foodRepository.deleteById(id);
+        return true;
+    }
 }

@@ -6,7 +6,7 @@ public class FoodDto {
     private int restoId;
     private String foodName;
     private int price;
-    private float rate;
+    private double rate;
     private String details;
 
     public int getFoodId() {
@@ -41,11 +41,11 @@ public class FoodDto {
         this.price = price;
     }
 
-    public float getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(float rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 

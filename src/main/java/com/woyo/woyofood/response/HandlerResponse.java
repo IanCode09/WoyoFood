@@ -81,4 +81,17 @@ public class HandlerResponse {
 
         responseWriter(response, errorResponse, errorResponse.getCode());
     }
+
+    public static void responseSuccessOK(HttpServletResponse response, String message) {
+        if (message.isEmpty()) {
+            message = "SUCCESS";
+        }
+
+        SuccessResponse<String> successResponse = new SuccessResponse<>();
+        successResponse.setCode(HttpServletResponse.SC_OK);
+        successResponse.setStatus(STATUS_SUCCESS);
+        successResponse.setMessage(message);
+
+        responseWriter(response, successResponse, successResponse.getCode());
+    }
 }

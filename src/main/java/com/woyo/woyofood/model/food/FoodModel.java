@@ -20,7 +20,7 @@ public class FoodModel {
     private int price;
 
     @Column(name = "rate")
-    private float rate;
+    private double rate;
 
     @Column(name = "details")
     private String details;
@@ -57,11 +57,11 @@ public class FoodModel {
         this.price = price;
     }
 
-    public float getRate() {
+    public double getRate() {
         return rate;
     }
 
-    public void setRate(float rate) {
+    public void setRate(double rate) {
         this.rate = rate;
     }
 
